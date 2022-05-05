@@ -20,15 +20,22 @@
         <h1>AJO</h1>
       </div>
       <div class="text">
-        <h1>Welcome back, Folashade</h1>
+        <h1>
+          {{
+            this.$store.state.userDetails.firstname !== undefined
+              ? `Welcome back, ` + userName
+              : `Welcome to AJO`
+          }}
+        </h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ajo is the No. 1 site for finding travel deals and reviews. Millions
+          of Hotel Reviews. Vacation Rentals. Hidden Gems. Cheap Flights. Tours,
+          Attractions + More.
         </p>
       </div>
       <TheLoader />
       <div class="button">
-        <a href="/auth/login">
+        <a @click="isLoggedIn">
           <TheButton title=" Get Started" value="whiteBgLg" />
         </a>
       </div>
@@ -45,6 +52,20 @@ export default {
   name: 'IndexPage',
   transition: 'start',
   components: { TheButton, Footer, TheLoader, TheWhiteLoader },
+  data() {
+    return {
+      userName: this.$store.state.userDetails.firstname,
+    }
+  },
+  methods: {
+    isLoggedIn() {
+      if (this.$store.state.userDetails.firstname !== undefined) {
+        this.$router.push('/home')
+      } else {
+        this.$router.push('/auth/login')
+      }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>

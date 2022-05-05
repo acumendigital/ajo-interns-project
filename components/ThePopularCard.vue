@@ -1,5 +1,4 @@
 <template>
-<nuxt-link :to="'/explore/' + placeId">
   <div class="cards-container">
     <div class="scroll">
       <a :href="`/explore/${place.fullSearchResult.place_id}`">
@@ -15,7 +14,6 @@
       </a>
     </div>
   </div>
-</nuxt-link>
 </template>
 <script>
 import axios from 'axios'
@@ -26,8 +24,8 @@ export default {
       photoReference: this.place.fullSearchResult.photos[0].photo_reference,
     }
   },
-  computed:{
-    placeId(){
+  computed: {
+    placeId() {
       return this.place.fullSearchResult.place_id
     },
     getImageUrl() {

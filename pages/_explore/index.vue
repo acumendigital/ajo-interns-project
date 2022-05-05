@@ -3,7 +3,7 @@
     <section class="top">
       <TheNavbar />
       <div class="welcome">
-        <h1>Discover Lekki, Lagos</h1>
+        <h1>Discover, {{ currentCity }}</h1>
       </div>
     </section>
     <section class="middle">
@@ -23,51 +23,54 @@
     </section>
     <section class="explore-container">
       <div class="explore-cards">
-        <TheExploreCard />
-        <TheExploreCard />
-        <TheExploreCard />
-        <TheExploreCard />
+        <div>
+          <TheExploreCard />
+        </div>
       </div>
     </section>
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from "vuex";
-
+import { mapState, mapActions } from 'vuex'
+import axios from 'axios'
 export default {
-  transition: "discover",
+  transition: 'discover',
   data() {
-    return {};
+    return {
+      currentCity: this.$route.params.explore,
+    }
   },
   computed: {
     ...mapState({
       cities: (state) => state.cities,
-      popularPlaces: (state) => state.popularPlaces,
     }),
+    getInfo() {
+      console.log('Info Gotten')
+    },
   },
   methods: {
-    ...mapActions(["getPopularPlaces", "getTopCities"]),
+    ...mapActions(['getTopCities']),
   },
   async fetch({ store }) {
-    await store.dispatch("getTopCities");
-    await store.dispatch("getPopularPlaces");
+    await store.dispatch('getTopCities')
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
   .container {
     max-width: 428px;
-    font-family: "Brown";
+    font-family: 'Brown';
     .top {
       .welcome {
-        font-family: "Brown";
+        font-family: 'Brown';
         margin-top: 34px;
-        padding: 0rem 1rem;
+        padding: 0rem 2rem;
         h1 {
           font-size: 25px;
           font-weight: 900;
           color: #041a7a;
+          cursor: pointer;
         }
       }
     }
@@ -89,6 +92,7 @@ export default {
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
+        padding-bottom: 16px;
 
         .line {
           height: 2px;
@@ -98,6 +102,7 @@ export default {
       }
       .search {
         margin-top: 16px;
+        margin-bottom: 24px;
       }
     }
     .explore-container {

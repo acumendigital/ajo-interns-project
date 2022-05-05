@@ -1,8 +1,11 @@
 <template>
   <div class="search">
-    <input class="input" type="search" />
-    <!-- <font-awesome-icon icon="magnifying-glass" /> -->
-    <img src="../assets/img/search-icon.svg" alt="Search">
+    <input
+      class="input"
+      type="search"
+      placeholder="search for your favorite location"
+    />
+    <img src="../assets/img/search-icon.svg" alt="Search" />
   </div>
 </template>
 <script>
@@ -28,8 +31,7 @@ export default {}
   .input:focus {
     border: 0px solid #c4c4c4;
   }
-  svg {
-    position: absolute;
+  img {
     width: 20px;
     margin-top: 10px;
     color: #041a7a;
