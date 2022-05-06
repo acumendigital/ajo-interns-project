@@ -40,16 +40,24 @@ export default {
       currentCity: this.$route.params.explore,
     }
   },
+  methods: {
+    ...mapActions(['getTopCities']),
+  },
   computed: {
     ...mapState({
       cities: (state) => state.cities,
     }),
-    getInfo() {
-      console.log('Info Gotten')
+    getCurrentCityData() {
+      fetch(
+        `https://ajo-app.herokuapp.com/api/places/discover/${this.currentCity}?placeType=point_of_interest`
+      )
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
-  },
-  methods: {
-    ...mapActions(['getTopCities']),
   },
   async fetch({ store }) {
     await store.dispatch('getTopCities')
