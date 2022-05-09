@@ -8,7 +8,12 @@
           </nuxt-link>
           <h1>Sign Up to Ajo</h1>
         </div>
-        <form @submit="register()" enctype="multipart/form-data" method="post">
+        <form
+          v-if="!loading"
+          @submit="register()"
+          enctype="multipart/form-data"
+          method="post"
+        >
           <div class="names">
             <div class="name">
               <label for="firstname"><strong>First Name</strong></label>
@@ -48,6 +53,10 @@
             </div>
           </div>
         </form>
+
+        <div v-if="loading" class="loader">
+          <TheBlueLoader />
+        </div>
       </div>
     </section>
     <div class="reg">
@@ -68,6 +77,7 @@ export default {
       email: '',
       password: '',
       error: null,
+      loading: false,
     }
   },
 
@@ -79,17 +89,25 @@ export default {
         email: this.email,
         password: this.password,
       }
+      this.loading = true
       axios
         .post('https://ajo-app.herokuapp.com/api/auth/signup', data)
         .then((res) => {
           const userData = res.data
           this.$toasted.show('You have registered successfully', {
             theme: 'primary',
-            position: 'top-center',
+            position: 'bottom-center',
             duration: 5000,
             type: 'success',
           })
           this.$router.push('/auth/login')
+          this.loading = false
+        })
+        .catch((err) => {
+          this.$toasted.show('Sign Up unsuccessful', err.message, {
+            type: 'error',
+            duration: '3500',
+          })
         })
     },
   },
@@ -235,6 +253,12 @@ export default {
       background: transparent;
       border: 0px;
       margin-top: 10px;
+    }
+    .loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 7rem 4rem;
     }
   }
 }
