@@ -23,6 +23,13 @@
             <span class="forgot">
               Use Uppercase, Lowercase and Numeric characters*
             </span>
+            <span
+              ><div class="back">
+                <nuxt-link to="/auth/forgot-password"
+                  >Forgot password?</nuxt-link
+                >
+              </div></span
+            >
           </div>
           <div>
             <div class="btn">
@@ -63,6 +70,15 @@ export default {
         password: this.password,
       }
       this.loading = true
+      if (this.email == '' || this.password == '') {
+        this.loading = false
+        this.$toasted.show('field cannot be empty', {
+          position: 'top-center',
+          duration: 2500,
+          type: 'danger',
+        })
+        return
+      }
       axios
         .post('https://ajo-app.herokuapp.com/api/auth/signin', data)
         .then((res) => {
@@ -210,6 +226,12 @@ export default {
     }
     .btn {
       margin: 2rem 0;
+    }
+    .back {
+      a {
+        text-decoration: none;
+        color: #041a7a;
+      }
     }
   }
 }
