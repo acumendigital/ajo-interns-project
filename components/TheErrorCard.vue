@@ -9,7 +9,7 @@
         <p>{{ message }}</p>
         <p>Check the spelling and try again</p>
       </div>
-      <nuxt-link to="/auth/login" class="btn">
+      <nuxt-link to="/home" class="btn">
         <TheButton title="Back to homepage" value="yellowBgLg" />
       </nuxt-link>
     </main>
