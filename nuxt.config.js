@@ -32,7 +32,6 @@ export default {
         }
       })
 
-      console.log(routeArray, placeArray);
       const routes = routeArray.concat(placeArray)
       return routes
     },

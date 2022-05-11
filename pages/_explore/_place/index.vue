@@ -108,6 +108,7 @@ export default {
     return {
       showModal: false,
       seeReviews: false,
+      allPlaceImgs: this.$store.state.placeDetail.data.photos
     }
   },
   methods: {
@@ -172,9 +173,6 @@ export default {
     },
     allReviews() {
       return this.$store.state.placeDetail.data.reviews
-    },
-    allPlaceImgs() {
-      return this.placeDetails.photos
     },
     similarPlaces() {
       return this.$store.state.similarPlaces
@@ -334,11 +332,14 @@ export default {
     &:nth-child(1) {
       @include yellow-btn;
     }
-    .ride-modal-container{
+  }
+  a{
+    @include transparent-btn; 
+  }
+  .ride-modal-container{
       position: absolute;
       left: 0;
       bottom: 0;
     }
-  }
 }
 </style>
