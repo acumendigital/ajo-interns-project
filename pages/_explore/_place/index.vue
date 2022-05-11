@@ -176,6 +176,9 @@ export default {
     allReviews() {
       return this.$store.state.placeDetail.data.reviews
     },
+    allPlaceImgs() {
+      return this.placeDetails.photos
+    },
     similarPlaces() {
       return this.$store.state.similarPlaces
     },

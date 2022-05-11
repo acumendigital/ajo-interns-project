@@ -97,7 +97,7 @@ export default {
         flex-direction: row;
         overflow: scroll;
         max-width: 428px;
-
+        padding-bottom: 16px;
         .line {
           height: 2px;
           background: #fffee6;
@@ -106,6 +106,7 @@ export default {
       }
       .search {
         margin-top: 16px;
+        margin-bottom: 24px;
       }
     }
     .explore-container {
@@ -117,18 +118,13 @@ export default {
         margin-top: 1rem;
         overflow-y: scroll;
         overflow-x: hidden;
-        max-height: 690px;
+        max-height: 650px;
         padding: 0rem 3rem;
       }
     }
   }
-  .drop-container {
-    display: block;
-  }
 }
-element.style {
-  display: block;
-}
+
 .discover-enter-active,
 .discover-leave-active {
   transition: opacity 0.5s;

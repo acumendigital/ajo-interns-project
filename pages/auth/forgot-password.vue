@@ -1,13 +1,13 @@
-<template>
-  <div class="login">
-    <section class="">
+<template lang="">
+  <main>
+    <div>
+      <div class="title">
+        <nuxt-link to="/auth/login">
+          <font-awesome-icon icon="x" />
+        </nuxt-link>
+        <h1>Reset Password</h1>
+      </div>
       <div class="form">
-        <div class="title">
-          <nuxt-link to="/">
-            <font-awesome-icon icon="x" />
-          </nuxt-link>
-          <h1>Sign In to Ajo</h1>
-        </div>
         <form
           v-if="!loading"
           @submit="login()"
@@ -17,40 +17,21 @@
           <div class="fields">
             <label for="email"><strong>Email Address</strong></label>
             <input type="email" name="email" v-model="email" />
-
-            <label for="email"><strong>Password</strong></label>
-            <input type="password" name="email" v-model="password" />
-            <span class="forgot">
-              Use Uppercase, Lowercase and Numeric characters*
-            </span>
-            <span
-              ><div class="back">
-                <nuxt-link to="/auth/forgot-password"
-                  >Forgot password?</nuxt-link
-                >
-              </div></span
-            >
           </div>
           <div>
             <div class="btn">
-              <button type="button" @click="login()">
-                <TheButton title="Sign In" value="yellowBgLg" />
+              <button type="button" @click="forgotPassword()">
+                <TheButton title="Reset Password" value="yellowBgLg" />
               </button>
             </div>
           </div>
         </form>
-        <div v-show="loading" class="loader">
-          <TheBlueLoader />
-        </div>
       </div>
-    </section>
-    <div class="reg">
-      <div class="back">
-        <p>Don't have an account?</p>
-        <nuxt-link to="/auth/register"><span>Register</span></nuxt-link>
+      <div v-show="loading" class="loader">
+        <TheBlueLoader />
       </div>
     </div>
-  </div>
+  </main>
 </template>
 <script>
 import axios from 'axios'
@@ -58,21 +39,18 @@ export default {
   data() {
     return {
       email: '',
-      password: '',
-      userInfo: this.$store.state.userDetails,
       loading: false,
     }
   },
   methods: {
-    async login() {
+    async forgotPassword() {
       const data = {
         email: this.email,
-        password: this.password,
       }
       this.loading = true
-      if (this.email == '' || this.password == '') {
+      if (this.email == '') {
         this.loading = false
-        this.$toasted.show('field cannot be empty', {
+        this.$toasted.show('email cannot be empty', {
           position: 'top-center',
           duration: 2500,
           type: 'danger',
@@ -80,14 +58,10 @@ export default {
         return
       }
       axios
-        .post('https://ajo-app.herokuapp.com/api/auth/signin', data)
+        .post('https://ajo-app.herokuapp.com/api/auth/forgot_password', data)
         .then((res) => {
-          const userData = res.data
-          userData.user.token = userData.token
-          this.$store.commit('setUserDetails', userData.user)
-          this.$toasted.show('You have logged in successfully', {
-            theme: 'primary',
-            position: 'top-center',
+          this.$toasted.show(res.data.message, {
+            position: 'top-right',
             duration: 500,
             type: 'success',
           })
@@ -95,16 +69,12 @@ export default {
           this.$router.push('/home')
         })
         .catch((err) => {
-          this.$toasted.show(
-            'Please enter the correct details and try again',
-            err,
-            {
-              theme: 'danger',
-              position: 'top-left',
-              duration: 200,
-              type: danger,
-            }
-          )
+          this.$toasted.show('Please enter the right details and try again', {
+            position: 'top-left',
+            duration: 2000,
+            type: 'danger',
+          })
+          this.loading = false
         })
     },
   },
@@ -112,20 +82,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 428px) {
-  .login {
-    padding: 43px 32px;
-    .form {
-      .title {
-        svg {
-          color: #041a7a;
-          font-size: 32px;
-        }
-        h1 {
-          font-family: 'Brown';
-          color: #041a7a;
-          margin-top: 32px;
-        }
+  main {
+    display: flex;
+    padding: 1.5rem;
+    .title {
+      svg {
+        color: #041a7a;
+        font-size: 32px;
       }
+      h1 {
+        font-family: 'Brown';
+        color: #041a7a;
+        margin-top: 32px;
+      }
+    }
+    .form {
       form {
         .fields {
           display: flex;
@@ -222,10 +193,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 4rem;
-    }
-    .btn {
-      margin: 2rem 0;
+      margin: 4rem 5rem;
     }
     .back {
       a {

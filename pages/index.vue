@@ -28,13 +28,16 @@
           }}
         </h1>
         <p>
-          Ajo is the No. 1 app for finding the best travel reviews and deals.
-          Read reviews, compare prices, and find the best Hotels, Restaurants,
-          Attractions and more.
+          Ajo is the No. 1 site for finding travel deals and reviews. Millions
+          of Hotel Reviews. Vacation Rentals. Hidden Gems. Cheap Flights. Tours,
+          Attractions + More.
         </p>
       </div>
-      <div class="button" @click="getRoute">
-        <a>
+      <div class="loader">
+        <TheWhiteLoader v-if="loading" />
+      </div>
+      <div class="button">
+        <a @click="isLoggedIn">
           <TheButton title=" Get Started" value="whiteBgLg" />
         </a>
       </div>
@@ -54,25 +57,19 @@ export default {
   data() {
     return {
       userName: this.$store.state.userDetails.firstname,
+      loading: false,
     }
   },
   methods: {
-    getRoute() {
+    isLoggedIn() {
       if (this.$store.state.userDetails.firstname !== undefined) {
+        this.loading = true
         this.$router.push('/home')
       } else {
+        this.loading = true
         this.$router.push('/auth/login')
       }
     },
-  },
-  mounted() {
-    function isLoggedIn() {
-      if (this.$store.state.userDetails !== undefined) {
-        return 'true'
-      } else {
-        return 'false'
-      }
-    }
   },
 }
 </script>
@@ -154,7 +151,7 @@ export default {
         flex-direction: column;
         margin-top: 45px;
         text-align: center;
-        margin-bottom: 94px;
+        margin-bottom: 66px;
         h1 {
           position: relative;
           font-style: normal;
@@ -191,12 +188,21 @@ export default {
         }
       }
       .button {
+        transition: all ease-in-out 500ms;
         margin-bottom: 92px;
         a {
           text-decoration: none;
           font-weight: 500;
           font-family: 'AirbnbCereal_W_lt';
         }
+      }
+      .loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        transition: all ease-in-out 500ms;
       }
     }
   }

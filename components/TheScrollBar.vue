@@ -1,7 +1,8 @@
 <template lang="">
   <div class="scroll-container">
     <div class="scroll-text">
-      <a :class="{ yellow: showYellow }" :href="'/' + popCity.city">
+
+      <a :class="{ yellow: showYellow }" :href="`/${popCity.city}`">
         <p @mouseover="setYellow" @mouseleave="hideYellow">
           {{ popCity.city }}
         </p>
