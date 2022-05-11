@@ -75,7 +75,7 @@ export default {
 .text {
   position: absolute;
   top: 590px;
-  left: 460px;
+  left: 550px;
   text-align: center;
   padding: 0 2rem;
   background-color: #fff;
