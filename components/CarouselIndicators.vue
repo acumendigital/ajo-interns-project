@@ -1,7 +1,7 @@
 <template>
     <div class="carousel-indicator-container">
         <div class="indicator-dots">
-            <div class="dots" v-for="(photo, key) in  photos" :key="key" :class="{ active : currentIndex === key }">
+            <div class="dots" v-for="(photo, key) in  photosArray" :key="key" :class="{ active : currentIndex === key }">
                 <p></p>
             </div>
         </div>
@@ -12,7 +12,7 @@
 export default {
     name: "carousel-indicators",
     props:{
-        photos:{
+        photosArray:{
             Required: true,
             type: Array
         },

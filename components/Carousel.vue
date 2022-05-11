@@ -9,7 +9,7 @@
         />
         <carousel-controls @previous-slide="previousSlide" @next-slide="nextSlide" />
         <carousel-indicators 
-        :photos="photos"
+        :photosArray="photos"
         :currentIndex="currentIndex"
          />
     </div>
