@@ -74,7 +74,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media screen and (min-width: 428px) {
+@media screen and (min-width: 429px) {
   .mobile {
     display: none;
   }
@@ -89,6 +89,9 @@ export default {
     width: 580.49px;
     height: 701.75px;
     top: 443px;
+    left: 0;
+    right: 0;
+    margin: auto;
     left: 430px;
   }
   .store {
@@ -97,9 +100,13 @@ export default {
     width: 535px;
     height: 84px;
     top: 1241px;
+    left: 0;
+    right: 0;
+    margin: auto;
     left: 464px;
   }
 }
+
 @media screen and (max-width: 428px) {
   .container {
     display: none;

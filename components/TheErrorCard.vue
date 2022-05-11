@@ -1,4 +1,4 @@
-<template lang="">
+<template>
   <div>
     <main>
       <div class="img-container">
@@ -6,6 +6,7 @@
       </div>
       <div class="text">
         <h1>Not Found</h1>
+        <p>{{ message }}</p>
         <p>Check the spelling and try again</p>
       </div>
       <nuxt-link to="/auth/login" class="btn">
@@ -15,7 +16,11 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  props: {
+    message: String,
+  },
+}
 </script>
 <style lang="scss" scoped>
 main {
