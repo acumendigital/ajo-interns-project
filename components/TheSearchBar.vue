@@ -5,7 +5,7 @@
       type="search"
       placeholder="search for your favorite location"
     />
-    <img src="../assets/img/search-icon.svg" alt="Search" />
+    <img src="~/assets/images/search-icon.svg" alt="Search" />
   </div>
 </template>
 <script>

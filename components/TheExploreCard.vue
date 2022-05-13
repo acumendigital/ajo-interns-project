@@ -9,11 +9,11 @@
   </div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style lang="scss" scoped>
 .explore {
-  background-image: url("../assets/img/nat-theather.jpeg");
+  background-image: url('~/assets/images/nat-theather.jpeg');
   background-position: 0% 45%;
   width: 364px;
   height: 160px;
