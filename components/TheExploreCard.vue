@@ -11,13 +11,6 @@
   </nuxt-link>
 </template>
 <script>
-<<<<<<< HEAD
-export default {}
-</script>
-<style lang="scss" scoped>
-.explore {
-  background-image: url('~/assets/images/nat-theather.jpeg');
-=======
 export default {
   name: 'explore-card',
   props: {
@@ -36,7 +29,6 @@ export default {
 <style lang="scss" scoped>
 .explore {
   // background-image: url("../assets/img/nat-theather.jpeg");
->>>>>>> eb30d9d5f963de1b8509734aa28b093e2055442c
   background-position: 0% 45%;
   width: 364px;
   height: 160px;

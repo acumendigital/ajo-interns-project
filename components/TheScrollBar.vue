@@ -1,5 +1,4 @@
 <template lang="">
-<<<<<<< HEAD
   <div class="container">
     <div class="scroll-container">
       <div
@@ -13,16 +12,6 @@
           </p>
         </a>
       </div>
-=======
-  <div class="scroll-container">
-    <div class="scroll-text">
-
-      <a :class="{ yellow: showYellow }" :href="`/${popCity.city}`">
-        <p @mouseover="setYellow" @mouseleave="hideYellow">
-          {{ popCity.city }}
-        </p>
-      </a>
->>>>>>> eb30d9d5f963de1b8509734aa28b093e2055442c
       <div class="line"></div>
     </div>
   </div>
@@ -103,7 +92,3 @@ export default {
   max-width: 428px;
 }
 </style>
-
-.scroll { position: relative; display: flex; flex-direction: row; overflow:
-scroll; max-width: 1000px; padding-top: 65px; .line { margin-top: 10px; height:
-2px; background: #fffee6; max-width: 428px; } }
