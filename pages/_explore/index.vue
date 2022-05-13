@@ -8,13 +8,8 @@
     </section>
     <section class="middle">
       <div class="scroll">
-        <div
-          class="scroll-text"
-          v-for="(popCity, index) in cities"
-          :key="popCity.id"
-        >
-          <TheScrollBar :popCity="popCity" :index="index" />
-          <div class="line"></div>
+        <div class="scroll-text">
+          <TheScrollBar />
         </div>
       </div>
       <div class="search">
@@ -34,14 +29,9 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
-import TheErrorCard from '~/components/TheErrorCard.vue'
-
+import { mapState, mapActions } from 'vuex'
 export default {
   transition: 'discover',
-  conponents: {
-    TheErrorCard,
-  },
   data() {
     return {
       discoveredPlaces: this.$store.state.cityDetails.data,
@@ -64,46 +54,31 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.container {
-  max-width: 428px;
-  font-family: 'Brown';
+.main-container {
+  font-family: 'Cereal Black';
   .top {
     .welcome {
-      font-family: 'Brown';
       margin-top: 34px;
-      padding: 0rem 2rem;
+      padding: 0rem 1.5rem;
       h1 {
+        font-family: 'Cereal Medium';
         font-size: 25px;
         font-weight: 900;
         color: #041a7a;
-        cursor: pointer;
       }
     }
   }
   .middle {
     grid-area: mid;
-    ::-webkit-scrollbar {
-      height: 0px;
-      width: 0px;
-      background: white;
-    }
-    ::-webkit-scrollbar-thumb:horizontal {
-      background: #fff;
-      border-radius: 10px;
-    }
     .scroll {
-      position: relative;
-      margin-top: 27px;
-      display: flex;
-      flex-direction: row;
-      overflow: scroll;
-      max-width: 428px;
-      padding-bottom: 16px;
-
-      .line {
-        height: 2px;
-        background: #fffee6;
-        max-width: 428px;
+      padding-top: 35px;
+      ::-webkit-scrollbar {
+        height: 0px;
+        background: white;
+      }
+      ::-webkit-scrollbar-thumb:horizontal {
+        background: #fff;
+        border-radius: 10px;
       }
     }
     .search {
@@ -113,6 +88,7 @@ export default {
   }
   .explore-container {
     .explore-cards {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;

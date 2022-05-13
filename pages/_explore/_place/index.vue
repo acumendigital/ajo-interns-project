@@ -23,11 +23,6 @@
       </div>
     </div>
     <div class="place-info-container">
-      <!-- <div class="place-info">
-        <p>
-          The National Museum is a mountain in south-western Nigeria. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during the periods of.
-        </p>
-      </div> -->
       <div class="place-address">
         <a :href="placeDetails.url" target="_blank" class="address">
           <font-awesome-icon icon="location-dot" />
@@ -110,7 +105,7 @@ export default {
     return {
       showModal: false,
       seeReviews: false,
-      allPlaceImgs: this.$store.state.placeDetail.data.photos
+      allPlaceImgs: this.$store.state.placeDetail.data.photos,
     }
   },
   methods: {
@@ -338,15 +333,15 @@ export default {
       @include yellow-btn;
     }
   }
-  a{
+  a {
     @include transparent-btn;
     text-decoration: none;
     padding: 19px 19px;
   }
 }
-.ride-modal-container{
-      position: absolute;
-      left: 0;
-      bottom: 0;
-    }
+.ride-modal-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 </style>
