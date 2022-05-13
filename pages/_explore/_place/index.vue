@@ -18,7 +18,7 @@
           <p>
             {{ placeDetails.rating }}
           </p>
-          <img src="../../../assets/img/star.svg" alt="star" />
+          <img src="~/assets/images/star.svg" alt="star" />
         </div>
       </div>
     </div>

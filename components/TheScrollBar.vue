@@ -1,26 +1,34 @@
 <template lang="">
-  <div class="scroll-container">
-    <div class="scroll-text">
-
-      <a :class="{ yellow: showYellow }" :href="`/${popCity.city}`">
-        <p @mouseover="setYellow" @mouseleave="hideYellow">
-          {{ popCity.city }}
-        </p>
-      </a>
+  <div class="container">
+    <div class="scroll-container">
+      <div
+        class="scroll-text"
+        v-for="(popCity, index) in cities"
+        :key="popCity.id"
+      >
+        <a :class="{ yellow: showYellow }" :href="`/${popCity.city}`">
+          <p @mouseover="setYellow" @mouseleave="hideYellow">
+            {{ popCity.city }}
+          </p>
+        </a>
+      </div>
       <div class="line"></div>
     </div>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
-  props: {
-    popCity: Object,
-    index: Number,
-  },
   data() {
     return {
       showYellow: false,
     }
+  },
+  computed: {
+    ...mapState({
+      cities: (state) => state.cities,
+      popularPlaces: (state) => state.popularPlaces,
+    }),
   },
   methods: {
     setYellow() {
@@ -33,34 +41,54 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media screen and (max-width: 428px) {
-  .scroll-container {
-    overflow: scroll;
+.scroll-container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding-top: 65px;
+  overflow: hidden;
+  overflow-x: scroll;
+  padding: 0rem 0.5rem;
+  ::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+    background: white;
+  }
+  ::-webkit-scrollbar-thumb:horizontal {
+    background: #fff;
+    border-radius: 10px;
+  }
+  .scroll-text {
+    display: flex;
+    gap: 60px;
     padding: 0rem 0.5rem;
-    // width: 184px;
-    .scroll-text {
-      display: flex;
-      gap: 60px;
-      padding: 0rem 0.5rem;
-      width: max-content;
+    width: max-content;
 
-      a {
-        font-family: 'Brown';
+    a {
+      text-decoration: none;
+      p {
+        font-family: 'AirbnbCereal_W_Lt';
         color: #1d405a;
         font-size: 14px;
         font-weight: 400;
         cursor: pointer;
-        text-decoration: none;
-      }
-      .yellow:after {
-        content: '';
-        position: absolute;
-        height: 2px;
-        width: 60px;
-        bottom: 0;
-        background: #fcf300;
+        width: 140px;
       }
     }
+    .yellow:after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 60px;
+      bottom: 0;
+      background: #fcf300;
+    }
   }
+}
+.line {
+  margin-top: 10px;
+  height: 22px;
+  background: #000;
+  max-width: 428px;
 }
 </style>

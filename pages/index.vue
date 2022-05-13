@@ -13,7 +13,7 @@
     </div>
     <div class="mobile">
       <div class="logo">
-        <img src="../assets/img/ajo-logo.png" alt="" />
+        <img src="~/assets/images/ajo-logo.png" alt="" />
       </div>
       <div class="title">
         <!-- <img src="../assets/img/ajo-text.png" alt="" /> -->
@@ -119,7 +119,7 @@ export default {
     width: 428px;
     height: 926px;
     background-image: linear-gradient(to bottom, #041a7acc, #041a7acc 80%),
-      url('../assets/img/home-bg.png');
+      url('~/assets/images/home-bg.png');
     background-position: center;
     background-size: 542px 926px;
     background-repeat: no-repeat;

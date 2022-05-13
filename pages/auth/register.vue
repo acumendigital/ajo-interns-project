@@ -47,9 +47,9 @@
           </div>
           <div class="socials">
             <div class="acc">
-              <img src="../../assets/img/apple.png" alt="" />
-              <img src="../../assets/img/google.png" alt="" />
-              <img src="../../assets/img/facebook.png" alt="" />
+              <img src="~/assets/images/apple.png" alt="" />
+              <img src="~/assets/images/google.png" alt="" />
+              <img src="~/assets/images/facebook.png" alt="" />
             </div>
           </div>
         </form>
