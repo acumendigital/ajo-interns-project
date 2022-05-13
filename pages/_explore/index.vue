@@ -65,66 +65,64 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media screen and (max-width: 428px) {
-  .container {
-    max-width: 428px;
-    font-family: 'Brown';
-    .top {
-      .welcome {
-        font-family: 'Brown';
-        margin-top: 34px;
-        padding: 0rem 2rem;
-        h1 {
-          font-size: 25px;
-          font-weight: 900;
-          color: #041a7a;
-          cursor: pointer;
-        }
+.container {
+  max-width: 428px;
+  font-family: 'Brown';
+  .top {
+    .welcome {
+      font-family: 'Brown';
+      margin-top: 34px;
+      padding: 0rem 2rem;
+      h1 {
+        font-size: 25px;
+        font-weight: 900;
+        color: #041a7a;
+        cursor: pointer;
       }
     }
-    .middle {
-      grid-area: mid;
-      ::-webkit-scrollbar {
-        height: 0px;
-        width: 0px;
-        background: white;
-      }
-      ::-webkit-scrollbar-thumb:horizontal {
-        background: #fff;
-        border-radius: 10px;
-      }
-      .scroll {
-        position: relative;
-        margin-top: 27px;
-        display: flex;
-        flex-direction: row;
-        overflow: scroll;
-        max-width: 428px;
-        padding-bottom: 16px;
+  }
+  .middle {
+    grid-area: mid;
+    ::-webkit-scrollbar {
+      height: 0px;
+      width: 0px;
+      background: white;
+    }
+    ::-webkit-scrollbar-thumb:horizontal {
+      background: #fff;
+      border-radius: 10px;
+    }
+    .scroll {
+      position: relative;
+      margin-top: 27px;
+      display: flex;
+      flex-direction: row;
+      overflow: scroll;
+      max-width: 428px;
+      padding-bottom: 16px;
 
-        .line {
-          height: 2px;
-          background: #fffee6;
-          max-width: 428px;
-        }
-      }
-      .search {
-        margin-top: 16px;
-        margin-bottom: 24px;
+      .line {
+        height: 2px;
+        background: #fffee6;
+        max-width: 428px;
       }
     }
-    .explore-container {
-      .explore-cards {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        margin-top: 1rem;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        max-height: 650px;
-        padding: 0rem 3rem;
-      }
+    .search {
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+  }
+  .explore-container {
+    .explore-cards {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin-top: 1rem;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: 650px;
+      padding: 0rem 3rem;
     }
   }
 }

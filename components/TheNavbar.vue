@@ -96,8 +96,8 @@ export default {
 .drop-container {
   position: absolute;
   top: 0;
+  width: 100%;
   background-color: #fff;
-  width: 432px;
   z-index: 2;
   padding-bottom: 2rem;
   .top {

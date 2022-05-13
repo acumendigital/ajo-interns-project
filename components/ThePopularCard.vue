@@ -61,7 +61,7 @@ export default {
       .card {
         background-position: center;
         position: relative;
-        margin: 1rem 10px;
+        margin: 1rem 0px;
         height: 410px;
         transition: transform 500ms ease;
         opacity: 0.8;
