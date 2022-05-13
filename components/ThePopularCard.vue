@@ -70,6 +70,10 @@ export default {
           display: flex;
           flex-direction: column;
           color: #fff;
+
+          a {
+            text-decoration-style: none;
+          }
           h1 {
             font-size: 25px;
             margin: 0px;

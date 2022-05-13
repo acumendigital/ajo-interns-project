@@ -1,4 +1,5 @@
 <template lang="">
+<<<<<<< HEAD
   <div class="container">
     <div class="scroll-container">
       <div
@@ -12,6 +13,16 @@
           </p>
         </a>
       </div>
+=======
+  <div class="scroll-container">
+    <div class="scroll-text">
+
+      <a :class="{ yellow: showYellow }" :href="`/${popCity.city}`">
+        <p @mouseover="setYellow" @mouseleave="hideYellow">
+          {{ popCity.city }}
+        </p>
+      </a>
+>>>>>>> eb30d9d5f963de1b8509734aa28b093e2055442c
       <div class="line"></div>
     </div>
   </div>

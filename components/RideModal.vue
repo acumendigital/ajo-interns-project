@@ -79,7 +79,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@media screen and (min-width: 428px) {
   .modal-container {
     z-index: 9;
     width: 100vw;
@@ -136,7 +135,6 @@ export default {
       }
     }
   }
-}
 @media (min-width: 1200px) {
   .modal-container {
     align-items: center;

@@ -83,7 +83,9 @@
         Get Directions
       </a>
     </div>
-    <ride-modal v-if="showModal" @close-modal="onCloseModal" />
+    <div class="ride-modal-container">
+      <ride-modal v-if="showModal" @close-modal="onCloseModal" />
+    </div>
   </div>
 </template>
 <script>
@@ -108,6 +110,7 @@ export default {
     return {
       showModal: false,
       seeReviews: false,
+      allPlaceImgs: this.$store.state.placeDetail.data.photos
     }
   },
   methods: {
@@ -335,16 +338,15 @@ export default {
       @include yellow-btn;
     }
   }
-  a {
-    width: 171px;
+  a{
     @include transparent-btn;
     text-decoration: none;
-    text-align: center;
+    padding: 19px 19px;
   }
 }
-// .ride-modal-container{
-//   position: absolute;
-//   left: 0;
-//   bottom: 0;
-// }
+.ride-modal-container{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
 </style>
