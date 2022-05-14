@@ -2,14 +2,14 @@
   <div>
     <main>
       <div class="img-container">
-        <img src="../assets/img/error.png" alt="" />
+        <img src="~/assets/images/error.png" alt="" />
       </div>
       <div class="text">
         <h1>Not Found</h1>
         <p>{{ message }}</p>
         <p>Check the spelling and try again</p>
       </div>
-      <nuxt-link to="/auth/login" class="btn">
+      <nuxt-link to="/home" class="btn">
         <TheButton title="Back to homepage" value="yellowBgLg" />
       </nuxt-link>
     </main>

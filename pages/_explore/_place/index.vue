@@ -18,7 +18,7 @@
           <p>
             {{ placeDetails.rating }}
           </p>
-          <img src="../../../assets/img/star.svg" alt="star" />
+          <img src="~/assets/images/star.svg" alt="star" />
         </div>
       </div>
     </div>
@@ -191,6 +191,9 @@ export default {
     },
     reviews(){
       return this.allReviews.slice(0, 2)
+    },
+    allPlaceImgs() {
+      return this.placeDetails.photos
     },
     similarPlaces() {
       return this.$store.state.similarPlaces

@@ -8,7 +8,12 @@
           </nuxt-link>
           <h1>Sign In to Ajo</h1>
         </div>
-        <form @submit="login()" enctype="multipart/form-data" method="post">
+        <form
+          v-if="!loading"
+          @submit="login()"
+          enctype="multipart/form-data"
+          method="post"
+        >
           <div class="fields">
             <label for="email"><strong>Email Address</strong></label>
             <input type="email" name="email" v-model="email" />
@@ -18,11 +23,15 @@
             <span class="forgot">
               Use Uppercase, Lowercase and Numeric characters*
             </span>
+            <span
+              ><div class="back">
+                <nuxt-link to="/auth/forgot-password"
+                  >Forgot password?</nuxt-link
+                >
+              </div></span
+            >
           </div>
           <div>
-            <div v-show="isLoading" class="set-loading">
-              <TheWhiteLoader />
-            </div>
             <div class="btn">
               <button type="button" @click="login()">
                 <TheButton title="Sign In" value="yellowBgLg" />
@@ -30,6 +39,9 @@
             </div>
           </div>
         </form>
+        <div v-show="loading" class="loader">
+          <TheBlueLoader />
+        </div>
       </div>
     </section>
     <div class="reg">
@@ -48,7 +60,7 @@ export default {
       email: '',
       password: '',
       userInfo: this.$store.state.userDetails,
-      isLoading: false,
+      loading: false,
     }
   },
   methods: {
@@ -57,7 +69,16 @@ export default {
         email: this.email,
         password: this.password,
       }
-      this.isLoading === true
+      this.loading = true
+      if (this.email == '' || this.password == '') {
+        this.loading = false
+        this.$toasted.show('field cannot be empty', {
+          position: 'top-center',
+          duration: 2500,
+          type: 'danger',
+        })
+        return
+      }
       axios
         .post('https://ajo-app.herokuapp.com/api/auth/signin', data)
         .then((res) => {
@@ -70,7 +91,7 @@ export default {
             duration: 500,
             type: 'success',
           })
-          this.isLoading === false
+          this.loading = false
           this.$router.push('/home')
         })
         .catch((err) => {
@@ -197,13 +218,20 @@ export default {
       background: transparent;
       border: 0px;
     }
-    .set-loading {
+    .loader {
       display: flex;
       justify-content: center;
       align-items: center;
+      margin: 4rem;
     }
     .btn {
       margin: 2rem 0;
+    }
+    .back {
+      a {
+        text-decoration: none;
+        color: #041a7a;
+      }
     }
   }
 }
