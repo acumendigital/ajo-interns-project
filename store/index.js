@@ -97,7 +97,7 @@ export const actions = {
   async getPlaceDetails({ commit }, placeId) {
     try {
       const placeDetail = await this.$axios.get(`/places/${placeId}`)
-      commit('addPlaceDetails', placeDetail.data)
+      commit('addPlaceDetails', placeDetail.data.data)
     } catch (error) {
       console.log(error.message)
     }
@@ -122,4 +122,8 @@ export const actions = {
   },
 }
 
-export const getters = {}
+export const getters = {
+  async getPlaceReviews(state){
+      return await state.placeDetail.reviews
+  }
+}

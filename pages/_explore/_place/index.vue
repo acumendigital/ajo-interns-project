@@ -45,7 +45,7 @@
     </div>
     <div class="reviews-container">
       <div class="reviews-header">
-        <p>{{ numberOfReviews }}</p>
+        <!-- <p>{{ numberOfReviews }}</p> -->
         <p v-if="seeAllReviews" @click="seeAllReviewsHandler">
           {{ toggleSeeReview }}
         </p>
@@ -95,6 +95,8 @@ import placeCard from '~/components/PlaceCard.vue'
 import rideModal from '~/components/RideModal.vue'
 import ReviewFull from '~/components/ReviewFull.vue'
 import Carousel from '~/components/Carousel.vue'
+import { mapState, mapGetters } from 'vuex';
+import axios from 'axios';
 
 export default {
   name: 'booking',
@@ -110,10 +112,23 @@ export default {
     return {
       showModal: false,
       seeReviews: false,
-      allPlaceImgs: this.$store.state.placeDetail.data.photos
+      placeDetailData: []
+      // allPlaceImgs: this.$store.state.placeDetail.data.photos
     }
   },
+  created(){
+    this.getPlaceDetails(this.$route.params.place)
+  },
   methods: {
+     async getPlaceDetails(placeId){
+      try {
+      const placeDetailReq = await axios.get(`https://ajo-app.herokuapp.com/api/places/${placeId}`)
+      this.placeDetailData = placeDetailReq.data.data
+      console.log(this.placeDetailData.reviews, placeId);
+    } catch (error) {
+      console.log(error.message)
+    }
+    },
     revealModal() {
       this.showModal = true
       if (this.showModal) {
@@ -144,29 +159,27 @@ export default {
     },
   },
   computed: {
-    reviews() {
-      const reviewArray = this.$store.state.placeDetail.data.reviews
-      let newReviewArray = reviewArray.slice(0, 2)
-      return newReviewArray
+    placeDetails(){
+      return this.placeDetailData
     },
-    numberOfReviews() {
-      let reviewArray = this.$store.state.placeDetail.data.reviews
-      if (reviewArray.length > 1 || reviewArray.length == 0) {
-        return reviewArray.length + ' reviews'
-      } else {
-        return reviewArray.length + ' review'
-      }
-    },
-    seeAllReviews() {
-      let reviewArray = this.$store.state.placeDetail.data.reviews
-      if (reviewArray.length > 3) {
-        return true
-      }
-      return false
-    },
-    placeDetails() {
-      return this.$store.state.placeDetail.data
-    },
+    // numberOfReviews() {
+    //   // let reviewArray = this.$store.state.placeDetail.reviews
+    //   if (this.placeDetails.reviews.length > 1 || this.placeDetails.reviews.length == 0) {
+    //     return this.placeDetails.reviews.length + ' reviews'
+    //   } else {
+    //     return this.placeDetails.reviews.length + ' review'
+    //   }
+    // },
+    // seeAllReviews() {
+    //   // let reviewArray = this.$store.state.placeDetail.reviews
+    //   if (this.placeDetails.reviews.length > 3) {
+    //     return true
+    //   }
+    //   return false
+    // },
+    // placeDetails() {
+    //   return this.$store.state.placeDetail
+    // },
     toggleSeeReview() {
       if (this.seeReviews) {
         return 'See Less'
@@ -174,7 +187,10 @@ export default {
       return 'See All'
     },
     allReviews() {
-      return this.$store.state.placeDetail.data.reviews
+      return this.placeDetails.reviews
+    },
+    reviews(){
+      return this.allReviews.slice(0, 2)
     },
     similarPlaces() {
       return this.$store.state.similarPlaces
