@@ -36,30 +36,39 @@
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 import TheErrorCard from '~/components/TheErrorCard.vue'
+import axios from 'axios'
 
 export default {
   transition: 'discover',
   conponents: {
     TheErrorCard,
   },
+  async fetch(){
+    try {
+      this.discoveredPlacesData = (await axios.get(`https://ajo-app.herokuapp.com/api/places/discover/${this.$route.params.explore}?placeType=point_of_interest`)).data.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+    try {
+      this.citiesData = (await axios.get(`https://ajo-app.herokuapp.com/api/top-cities`)).data.data
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
   data() {
     return {
-      discoveredPlaces: this.$store.state.cityDetails.data,
+      discoveredPlacesData: [],
       cityName: this.$route.params.explore,
+      citiesData: [],
     }
   },
   computed: {
-    ...mapState({
-      cities: (state) => state.cities,
-      popularPlaces: (state) => state.popularPlaces,
-    }),
-  },
-  methods: {
-    ...mapActions(['getPopularPlaces', 'getTopCities', 'discoverCity']),
-  },
-  async fetch({ store, params }) {
-    await store.dispatch('getTopCities')
-    await store.dispatch('discoverCity', params.explore.toLowerCase())
+    cities(){
+      return this.citiesData
+    },
+    discoveredPlaces(){
+      return this.discoveredPlacesData
+    }
   },
 }
 </script>

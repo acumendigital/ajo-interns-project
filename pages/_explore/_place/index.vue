@@ -45,7 +45,7 @@
     </div>
     <div class="reviews-container">
       <div class="reviews-header">
-        <!-- <p>{{ numberOfReviews }}</p> -->
+        <p>{{ numberOfReviews }}</p>
         <p v-if="seeAllReviews" @click="seeAllReviewsHandler">
           {{ toggleSeeReview }}
         </p>
@@ -60,7 +60,7 @@
     </div>
     <div class="seeAll-review-container" v-if="seeReviews">
       <review-full
-        v-for="review in allReviews"
+        v-for="review in reviewArray"
         :key="review._id"
         :review="review"
       />
@@ -95,7 +95,6 @@ import placeCard from '~/components/PlaceCard.vue'
 import rideModal from '~/components/RideModal.vue'
 import ReviewFull from '~/components/ReviewFull.vue'
 import Carousel from '~/components/Carousel.vue'
-import { mapState, mapGetters } from 'vuex';
 import axios from 'axios';
 
 export default {
@@ -108,27 +107,27 @@ export default {
     ReviewFull,
     Carousel,
   },
+  async fetch(){
+    try {
+      this.placeDetailData = (await axios.get(`https://ajo-app.herokuapp.com/api/places/${this.$route.params.place}`)).data.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+    try {
+      this.similarPlacesData = (await axios.get(`https://ajo-app.herokuapp.com/api/places/search/similar?placeType=point_of_interest`)).data.data
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
   data() {
     return {
       showModal: false,
       seeReviews: false,
-      placeDetailData: []
-      // allPlaceImgs: this.$store.state.placeDetail.data.photos
+      placeDetailData: {},
+      similarPlacesData: {}
     }
-  },
-  created(){
-    this.getPlaceDetails(this.$route.params.place)
   },
   methods: {
-     async getPlaceDetails(placeId){
-      try {
-      const placeDetailReq = await axios.get(`https://ajo-app.herokuapp.com/api/places/${placeId}`)
-      this.placeDetailData = placeDetailReq.data.data
-      console.log(this.placeDetailData.reviews, placeId);
-    } catch (error) {
-      console.log(error.message)
-    }
-    },
     revealModal() {
       this.showModal = true
       if (this.showModal) {
@@ -162,47 +161,45 @@ export default {
     placeDetails(){
       return this.placeDetailData
     },
-    // numberOfReviews() {
-    //   // let reviewArray = this.$store.state.placeDetail.reviews
-    //   if (this.placeDetails.reviews.length > 1 || this.placeDetails.reviews.length == 0) {
-    //     return this.placeDetails.reviews.length + ' reviews'
-    //   } else {
-    //     return this.placeDetails.reviews.length + ' review'
-    //   }
-    // },
-    // seeAllReviews() {
-    //   // let reviewArray = this.$store.state.placeDetail.reviews
-    //   if (this.placeDetails.reviews.length > 3) {
-    //     return true
-    //   }
-    //   return false
-    // },
-    // placeDetails() {
-    //   return this.$store.state.placeDetail
-    // },
+    reviewArray(){
+      return this.placeDetails.reviews
+    },
+    reviews(){
+      if(this.reviewArray){
+        let newReviewArray = this.reviewArray.slice(0, 2)
+        return newReviewArray
+      }
+    },
+    numberOfReviews() {
+      if(this.reviewArray){
+        if (this.reviewArray.length > 1 || this.reviewArray.length == 0) {
+          return this.reviewArray.length + ' reviews'
+        } else {
+          return this.reviewArray.length + ' review'
+        }
+      }
+      
+    },
+    seeAllReviews() {
+      if(this.reviewArray){
+        if (this.reviewArray.length > 3) {
+          return true
+        }
+        return false
+      } 
+    },
     toggleSeeReview() {
       if (this.seeReviews) {
         return 'See Less'
       }
       return 'See All'
     },
-    allReviews() {
-      return this.placeDetails.reviews
-    },
-    reviews(){
-      return this.allReviews.slice(0, 2)
-    },
     allPlaceImgs() {
-      return this.placeDetails.photos
+      return this.placeDetailData.photos
     },
     similarPlaces() {
-      return this.$store.state.similarPlaces
+      return this.similarPlacesData
     },
-  },
-  async fetch({ store, params }) {
-    await store.dispatch('getReviews')
-    await store.dispatch('getPlaceDetails', params.place)
-    await store.dispatch('getSimilarPlaces')
   },
 }
 </script>
