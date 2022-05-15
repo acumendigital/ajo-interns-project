@@ -72,7 +72,6 @@ main {
   background-image: linear-gradient(to bottom, #041a7acc, #041a7acc 80%),
     url('~/assets/images/home-bg.png');
   background-position: center;
-  // background-size: 542px 926px;
   background-repeat: no-repeat;
   color: #fff;
   .mobile {
