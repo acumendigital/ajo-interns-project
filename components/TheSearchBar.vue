@@ -8,7 +8,7 @@
         v-bind="searchQuery"
         @mouseover="isVisible = !isVisible"
       />
-      <img src="~/assets/images/search-icon.svg" alt="Search" />
+      <img src="~/assets/images/Search-icon.svg" alt="Search" />
     </div>
     <div class="options" v-if="isVisible" @mouseleave="isVisible = !isVisible">
       <ul v-for="(result, index) in searchResults" :key="index">
