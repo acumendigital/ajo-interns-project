@@ -3,7 +3,7 @@
     <section class="">
       <div class="form">
         <div class="title">
-          <nuxt-link to="/">
+          <nuxt-link to="/mobile">
             <font-awesome-icon icon="x" />
           </nuxt-link>
           <h1>Sign In to Ajo</h1>

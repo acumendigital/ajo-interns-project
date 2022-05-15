@@ -4,7 +4,7 @@
       <input
         class="input"
         type="search"
-        placeholder="search your favorite locations"
+        placeholder="search for your favorite locations"
         v-bind="searchQuery"
         @mouseover="isVisible = !isVisible"
       />
@@ -77,7 +77,7 @@ export default {
   .options {
     position: absolute;
     background: #fff;
-    margin: 1rem 1.7rem;
+    margin: 0.5rem 1.7rem;
     width: 92%;
     max-height: 300px;
     overflow: scroll;

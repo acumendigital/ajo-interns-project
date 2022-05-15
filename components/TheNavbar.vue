@@ -2,11 +2,9 @@
   <div>
     <div v-show="showDropdown" class="drop-container" style="display: block">
       <div class="drop-header">
-        <div class="title">
-          <nuxt-link to="/home">
-            <font-awesome-icon icon="dove" />
-            <h1>AJO</h1></nuxt-link
-          >
+        <div class="title" @click="showDropdown = !showDropdown">
+          <font-awesome-icon icon="dove" />
+          <h1>AJO</h1>
         </div>
         <div>
           <font-awesome-icon
@@ -16,8 +14,8 @@
         </div>
       </div>
       <div class="drop-items">
-        <nuxt-link to="/">Wishlists</nuxt-link>
-        <nuxt-link to="/">Past Trips</nuxt-link>
+        <nuxt-link to="/mobile">Wishlists</nuxt-link>
+        <nuxt-link to="/mobile">Past Trips</nuxt-link>
         <nuxt-link to="/home">Home</nuxt-link>
         <div class="logout" @click="logout">Log out</div>
       </div>
@@ -25,7 +23,7 @@
     <div class="nav">
       <font-awesome-icon icon="bars" @click="showDropdown = !showDropdown" />
       <div>
-        <nuxt-link to="/">
+        <nuxt-link to="/mobile">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -62,7 +60,7 @@ export default {
     },
     logout() {
       this.$store.commit('setUserDetails', {})
-      this.$router.push('/')
+      this.$router.push('/mobile')
       console.log('User Logged Out')
     },
   },
@@ -108,17 +106,18 @@ export default {
     margin-top: 34px;
     padding: 0rem 1rem;
     .title {
-      a {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        h1 {
-          font-family: 'AirbnbCereal_W_Md';
-          color: #041a7a;
-        }
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+
+      h1 {
+        font-family: 'AirbnbCereal_W_Md';
+        color: #041a7a;
+        cursor: pointer;
       }
+
       svg {
         color: #9a9400;
         cursor: pointer;

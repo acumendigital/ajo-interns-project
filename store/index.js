@@ -18,8 +18,6 @@ export const plugins = getPlugins()
 
 export const state = () => ({
   places: [],
-  popularPlaces: [],
-  cities: [],
   reviews: [],
   user: [],
   placeDetail: [],
@@ -27,7 +25,6 @@ export const state = () => ({
   images: [],
   similarPlaces: [],
   cityDetails: [],
-  searchState: false,
 })
 
 export const mutations = {
@@ -36,9 +33,6 @@ export const mutations = {
   },
   setPopPlaces(state, popularPlacesData) {
     this.state.popularPlaces = popularPlacesData
-  },
-  setCities(state, popularCities) {
-    this.state.cities = popularCities
   },
   addReviews(state, reviews) {
     state.reviews = reviews
@@ -62,29 +56,6 @@ export const mutations = {
 }
 
 export const actions = {
-  async getPopularPlaces({ commit }) {
-    await this.$axios
-      .get('/places/search/popular/')
-      .then((res) => {
-        var response = res.data.data
-        commit('setPopPlaces', response)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
-  },
-
-  async getTopCities({ commit }) {
-    await this.$axios
-      .get('/top-cities')
-      .then((res) => {
-        var response = res.data.data
-        commit('setCities', response)
-      })
-      .catch((err) => {
-        console.log(err.message)
-      })
-  },
   async getReviews({ commit }) {
     try {
       const reviews = await axios.get(
@@ -126,7 +97,7 @@ export const actions = {
 }
 
 export const getters = {
-  async getPlaceReviews(state){
-      return await state.placeDetail.reviews
-  }
+  async getPlaceReviews(state) {
+    return await state.placeDetail.reviews
+  },
 }

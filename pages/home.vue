@@ -40,34 +40,30 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
-
 export default {
   transition: 'home',
   data() {
     return {
       error: '',
       userName: this.$store.state.userDetails.firstname,
+      popularPlaces: [],
     }
   },
+  created() {
+    this.$axios
+      .get('/places/search/popular/')
+      .then((res) => {
+        var response = res.data.data
+        this.popularPlaces = response
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
+  },
   computed: {
-    ...mapState({
-      popularPlaces: (state) => state.popularPlaces,
-    }),
     isLoggedInUser() {
-      if (Object.keys(this.$store.state.userDetails).length !== 0) {
-        return true
-      } else {
-        return false
-      }
+      if (Object.keys(this.$store.state.userDetails).length !== 0) return true
     },
-  },
-  methods: {
-    ...mapActions(['getPopularPlaces', 'getTopCities']),
-  },
-  async fetch({ store }) {
-    await store.dispatch('getTopCities')
-    await store.dispatch('getPopularPlaces')
   },
 }
 </script>
