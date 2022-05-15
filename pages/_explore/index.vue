@@ -8,13 +8,8 @@
     </section>
     <section class="middle">
       <div class="scroll">
-        <div
-          class="scroll-text"
-          v-for="(popCity, index) in cities"
-          :key="popCity.id"
-        >
-          <TheScrollBar :popCity="popCity" :index="index" />
-          <div class="line"></div>
+        <div class="scroll-text">
+          <TheScrollBar />
         </div>
       </div>
       <div class="search">
@@ -36,74 +31,74 @@
 <script>
 import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 import TheErrorCard from '~/components/TheErrorCard.vue'
+import axios from 'axios'
 
 export default {
   transition: 'discover',
   conponents: {
     TheErrorCard,
   },
+  async fetch() {
+    try {
+      this.discoveredPlacesData = (
+        await axios.get(
+          `https://ajo-app.herokuapp.com/api/places/discover/${this.$route.params.explore}?placeType=point_of_interest`
+        )
+      ).data.data
+    } catch (error) {
+      console.log(error.message)
+    }
+    try {
+      this.citiesData = (
+        await axios.get(`https://ajo-app.herokuapp.com/api/top-cities`)
+      ).data.data
+    } catch (error) {
+      console.log(error.message)
+    }
+  },
   data() {
     return {
-      discoveredPlaces: this.$store.state.cityDetails.data,
+      discoveredPlacesData: [],
       cityName: this.$route.params.explore,
+      citiesData: [],
     }
   },
   computed: {
-    ...mapState({
-      cities: (state) => state.cities,
-      popularPlaces: (state) => state.popularPlaces,
-    }),
-  },
-  methods: {
-    ...mapActions(['getPopularPlaces', 'getTopCities', 'discoverCity']),
-  },
-  async fetch({ store, params }) {
-    await store.dispatch('getTopCities')
-    await store.dispatch('discoverCity', params.explore.toLowerCase())
+    cities() {
+      return this.citiesData
+    },
+    discoveredPlaces() {
+      return this.discoveredPlacesData
+    },
   },
 }
 </script>
 <style lang="scss" scoped>
-.container {
-  max-width: 428px;
-  font-family: 'Brown';
+.main-container {
+  font-family: 'Cereal Black';
   .top {
     .welcome {
-      font-family: 'Brown';
       margin-top: 34px;
-      padding: 0rem 2rem;
+      padding: 0rem 1.5rem;
       h1 {
+        font-family: 'Cereal Medium';
         font-size: 25px;
         font-weight: 900;
         color: #041a7a;
-        cursor: pointer;
       }
     }
   }
   .middle {
     grid-area: mid;
-    ::-webkit-scrollbar {
-      height: 0px;
-      width: 0px;
-      background: white;
-    }
-    ::-webkit-scrollbar-thumb:horizontal {
-      background: #fff;
-      border-radius: 10px;
-    }
     .scroll {
-      position: relative;
-      margin-top: 27px;
-      display: flex;
-      flex-direction: row;
-      overflow: scroll;
-      max-width: 428px;
-      padding-bottom: 16px;
-
-      .line {
-        height: 2px;
-        background: #fffee6;
-        max-width: 428px;
+      padding-top: 35px;
+      ::-webkit-scrollbar {
+        height: 0px;
+        background: white;
+      }
+      ::-webkit-scrollbar-thumb:horizontal {
+        background: #fff;
+        border-radius: 10px;
       }
     }
     .search {
@@ -113,6 +108,7 @@ export default {
   }
   .explore-container {
     .explore-cards {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
