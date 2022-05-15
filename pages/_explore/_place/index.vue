@@ -23,11 +23,6 @@
       </div>
     </div>
     <div class="place-info-container">
-      <!-- <div class="place-info">
-        <p>
-          The National Museum is a mountain in south-western Nigeria. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during. It is located in the city of Abeokuta, Lagos State, and was normally used as a natural fortress during the periods of.
-        </p>
-      </div> -->
       <div class="place-address">
         <a :href="placeDetails.url" target="_blank" class="address">
           <font-awesome-icon icon="location-dot" />
@@ -95,7 +90,7 @@ import placeCard from '~/components/PlaceCard.vue'
 import rideModal from '~/components/RideModal.vue'
 import ReviewFull from '~/components/ReviewFull.vue'
 import Carousel from '~/components/Carousel.vue'
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   name: 'booking',
@@ -107,16 +102,24 @@ export default {
     ReviewFull,
     Carousel,
   },
-  async fetch(){
+  async fetch() {
     try {
-      this.placeDetailData = (await axios.get(`https://ajo-app.herokuapp.com/api/places/${this.$route.params.place}`)).data.data;
+      this.placeDetailData = (
+        await axios.get(
+          `https://ajo-app.herokuapp.com/api/places/${this.$route.params.place}`
+        )
+      ).data.data
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
     try {
-      this.similarPlacesData = (await axios.get(`https://ajo-app.herokuapp.com/api/places/search/similar?placeType=point_of_interest`)).data.data
+      this.similarPlacesData = (
+        await axios.get(
+          `https://ajo-app.herokuapp.com/api/places/search/similar?placeType=point_of_interest`
+        )
+      ).data.data
     } catch (error) {
-      console.log(error.message);
+      console.log(error.message)
     }
   },
   data() {
@@ -124,7 +127,7 @@ export default {
       showModal: false,
       seeReviews: false,
       placeDetailData: {},
-      similarPlacesData: {}
+      similarPlacesData: {},
     }
   },
   methods: {
@@ -158,35 +161,34 @@ export default {
     },
   },
   computed: {
-    placeDetails(){
+    placeDetails() {
       return this.placeDetailData
     },
-    reviewArray(){
+    reviewArray() {
       return this.placeDetails.reviews
     },
-    reviews(){
-      if(this.reviewArray){
+    reviews() {
+      if (this.reviewArray) {
         let newReviewArray = this.reviewArray.slice(0, 2)
         return newReviewArray
       }
     },
     numberOfReviews() {
-      if(this.reviewArray){
+      if (this.reviewArray) {
         if (this.reviewArray.length > 1 || this.reviewArray.length == 0) {
           return this.reviewArray.length + ' reviews'
         } else {
           return this.reviewArray.length + ' review'
         }
       }
-      
     },
     seeAllReviews() {
-      if(this.reviewArray){
+      if (this.reviewArray) {
         if (this.reviewArray.length > 3) {
           return true
         }
         return false
-      } 
+      }
     },
     toggleSeeReview() {
       if (this.seeReviews) {
@@ -351,15 +353,15 @@ export default {
       @include yellow-btn;
     }
   }
-  a{
+  a {
     @include transparent-btn;
     text-decoration: none;
     padding: 19px 19px;
   }
 }
-.ride-modal-container{
-      position: absolute;
-      left: 0;
-      bottom: 0;
-    }
+.ride-modal-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 </style>

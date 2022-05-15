@@ -16,7 +16,6 @@
         <img src="~/assets/images/ajo-logo.png" alt="" />
       </div>
       <div class="title">
-        <!-- <img src="../assets/img/ajo-text.png" alt="" /> -->
         <h1>AJO</h1>
       </div>
       <div class="text">
@@ -54,6 +53,7 @@ export default {
   name: 'IndexPage',
   transition: 'start',
   components: { TheButton, Footer, TheLoader, TheWhiteLoader },
+  layout: 'auth',
   data() {
     return {
       userName: this.$store.state.userDetails.firstname,
@@ -74,7 +74,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media screen and (min-width: 429px) {
+@media screen and (min-width: 1440px) {
   .mobile {
     display: none;
   }
@@ -107,7 +107,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 428px) {
+@media screen and (max-width: 1439px) {
   .container {
     display: none;
   }
@@ -116,12 +116,12 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 428px;
+    width: 100%;
     height: 926px;
     background-image: linear-gradient(to bottom, #041a7acc, #041a7acc 80%),
       url('~/assets/images/home-bg.png');
     background-position: center;
-    background-size: 542px 926px;
+    // background-size: 542px 926px;
     background-repeat: no-repeat;
     color: #fff;
     .mobile {
