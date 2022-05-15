@@ -194,9 +194,6 @@ export default {
       }
       return 'See All'
     },
-    allPlaceImgs() {
-      return this.placeDetailData.photos
-    },
     similarPlaces() {
       return this.similarPlacesData
     },
