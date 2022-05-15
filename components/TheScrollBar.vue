@@ -12,8 +12,8 @@
           </p>
         </a>
       </div>
-      <div class="line"></div>
     </div>
+    <div class="line"></div>
   </div>
 </template>
 <script>
@@ -86,9 +86,8 @@ export default {
   }
 }
 .line {
-  margin-top: 10px;
-  height: 22px;
-  background: #000;
+  height: 2px;
+  background: #fffee6;
   max-width: 428px;
 }
 </style>

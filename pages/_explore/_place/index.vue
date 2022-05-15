@@ -105,7 +105,7 @@ export default {
     return {
       showModal: false,
       seeReviews: false,
-      allPlaceImgs: this.$store.state.placeDetail.data.photos,
+      // allPlaceImgs: this.$store.state.placeDetail.data.photos,
     }
   },
   methods: {

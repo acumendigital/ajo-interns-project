@@ -27,6 +27,7 @@ export const state = () => ({
   images: [],
   similarPlaces: [],
   cityDetails: [],
+  searchState: false,
 })
 
 export const mutations = {
@@ -54,11 +55,11 @@ export const mutations = {
   setUserDetails(state, userDetails) {
     state.userDetails = userDetails
   },
-  addCityDetails( state, cityDetails ){
+  addCityDetails(state, cityDetails) {
     let cityDetailsData = { data: cityDetails }
     state.cityDetails = cityDetailsData
-  }
-};
+  },
+}
 
 export const actions = {
   async getPopularPlaces({ commit }) {
@@ -114,8 +115,10 @@ export const actions = {
   },
   async discoverCity({ commit }, city) {
     try {
-      const discoveries = await this.$axios.get(`places/discover/${city}?placeType=point_of_interest`)
-      commit('addCityDetails', discoveries.data.data )
+      const discoveries = await this.$axios.get(
+        `places/discover/${city}?placeType=point_of_interest`
+      )
+      commit('addCityDetails', discoveries.data.data)
     } catch (error) {
       console.log(error.message)
     }
