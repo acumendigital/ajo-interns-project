@@ -92,7 +92,7 @@ export default {
     left: 0;
     right: 0;
     margin: auto;
-    left: 430px;
+    left: 30px;
   }
   .store {
     background-image: url(~assets/images/stores.png);
@@ -103,7 +103,7 @@ export default {
     left: 0;
     right: 0;
     margin: auto;
-    left: 464px;
+    left: 64px;
   }
 }
 
