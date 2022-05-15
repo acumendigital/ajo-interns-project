@@ -25,6 +25,9 @@ export default {
     }
   },
   computed: {
+    placeId() {
+      return this.place.fullSearchResult.place_id
+    },
     getImageUrl() {
       return `https://maps.googleapis.com/maps/api/place/photo?photo_reference=${this.photoReference}&maxwidth=900&maxheight=600&key=AIzaSyASdmsJF14srd4fjjO8gehV3VEPtAX-plE`
     },
@@ -58,7 +61,7 @@ export default {
       .card {
         background-position: center;
         position: relative;
-        margin: 1rem 10px;
+        margin: 1rem 0px;
         height: 410px;
         transition: transform 500ms ease;
         opacity: 0.8;
