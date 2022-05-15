@@ -8,10 +8,7 @@
         </div>
         <div class="share">
           <div class="image-2" />
-          <p>
-            Not a lot of options <br />
-            for you to explore.
-          </p>
+          <p>Not a lot of options <br> for you to explore.</p>
         </div>
         <div class="report">
           <div class="image-3" />
@@ -27,26 +24,26 @@
 
 <script>
 export default {
-  name: 'DetailsPage',
+  name: 'DetailsPage'
 }
 </script>
 
-<style scoped>
-.first-segment {
+<style  scoped>
+.first-segment{
   padding: 39.6rem 0 9rem 0;
   position: relative;
 }
-.images {
+.images{
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 8.4rem 0 8.4rem 0;
   margin: 0 4rem 0 4rem;
-  border-top: 1px solid rgb(192, 192, 192, 0.3);
-  border-bottom: 1px solid rgb(192, 192, 192, 0.3);
+  border-top: 1px solid rgb(192,192,192,0.3);
+  border-bottom: 1px solid rgb(192,192,192,0.3);
   column-gap: 8.3rem;
 }
-.images p {
+.images p{
   font-size: 24px;
   line-height: 2.25rem;
   font-weight: 400;
@@ -54,38 +51,38 @@ export default {
   font-weight: 400;
   width: 216.85px;
 }
-.image-1 {
+.image-1{
   background-image: url(~assets/images/road-sign.svg);
   width: 143.59px;
   height: 138.46px;
   margin-bottom: 16.2px;
 }
-.image-2 {
+.image-2{
   background-image: url(~assets/images/share.svg);
   width: 215.78px;
   height: 137.73px;
   margin-bottom: 16.93px;
 }
-.image-3 {
+.image-3{
   background-image: url(~assets/images/updates.svg);
   width: 165.67px;
   height: 137.73px;
   margin-bottom: 16.93px;
 }
-.text {
+.text{
   position: absolute;
   top: 590px;
-  left: 550px;
+  left: 460px;
   text-align: center;
   padding: 0 2rem;
-  background-color: #fff;
+  background-color: #FFF;
   font-size: 21px;
   line-height: 2.75rem;
   font-family: 'Cereal Medium';
   font-weight: 500;
   width: 452px;
 }
-.yellow {
+.yellow{
   position: absolute;
   top: 650px;
   left: 470px;
