@@ -39,6 +39,7 @@
     url('../fonts/AirbnbCereal-Medium.ttf') format('truetype');
 }
 
+/* Page Transitions */
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.5s;

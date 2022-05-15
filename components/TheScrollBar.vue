@@ -12,23 +12,28 @@
           </p>
         </a>
       </div>
-      <div class="line"></div>
     </div>
+    <div class="line"></div>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
 export default {
   data() {
     return {
       showYellow: false,
+      cities: [],
     }
   },
-  computed: {
-    ...mapState({
-      cities: (state) => state.cities,
-      popularPlaces: (state) => state.popularPlaces,
-    }),
+  created() {
+    this.$axios
+      .get('/top-cities')
+      .then((res) => {
+        var response = res.data.data
+        this.cities = response
+      })
+      .catch((err) => {
+        console.log(err.message)
+      })
   },
   methods: {
     setYellow() {
@@ -86,9 +91,8 @@ export default {
   }
 }
 .line {
-  margin-top: 10px;
-  height: 22px;
-  background: #000;
+  height: 2px;
+  background: #fffee6;
   max-width: 428px;
 }
 </style>

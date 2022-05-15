@@ -11,8 +11,12 @@
         <a>Contact</a>
       </div>
       <div class="btns">
-        <button class="sign-up">Signup</button>
-        <button class="login">Login</button>
+        <nuxt-link to="/auth/register">
+          <button class="sign-up">Signup</button>
+        </nuxt-link>
+        <nuxt-link to="/auth/login">
+          <button class="login">Login</button>
+        </nuxt-link>
       </div>
     </div>
     <div class="guide">
