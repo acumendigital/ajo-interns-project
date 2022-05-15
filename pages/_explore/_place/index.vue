@@ -60,7 +60,7 @@
     </div>
     <div class="seeAll-review-container" v-if="seeReviews">
       <review-full
-        v-for="review in allReviews"
+        v-for="review in reviewArray"
         :key="review._id"
         :review="review"
       />
@@ -95,6 +95,7 @@ import placeCard from '~/components/PlaceCard.vue'
 import rideModal from '~/components/RideModal.vue'
 import ReviewFull from '~/components/ReviewFull.vue'
 import Carousel from '~/components/Carousel.vue'
+import axios from 'axios';
 
 export default {
   name: 'booking',
@@ -106,11 +107,24 @@ export default {
     ReviewFull,
     Carousel,
   },
+  async fetch(){
+    try {
+      this.placeDetailData = (await axios.get(`https://ajo-app.herokuapp.com/api/places/${this.$route.params.place}`)).data.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+    try {
+      this.similarPlacesData = (await axios.get(`https://ajo-app.herokuapp.com/api/places/search/similar?placeType=point_of_interest`)).data.data
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
   data() {
     return {
       showModal: false,
       seeReviews: false,
-      allPlaceImgs: this.$store.state.placeDetail.data.photos
+      placeDetailData: {},
+      similarPlacesData: {}
     }
   },
   methods: {
@@ -144,28 +158,35 @@ export default {
     },
   },
   computed: {
-    reviews() {
-      const reviewArray = this.$store.state.placeDetail.data.reviews
-      let newReviewArray = reviewArray.slice(0, 2)
-      return newReviewArray
+    placeDetails(){
+      return this.placeDetailData
+    },
+    reviewArray(){
+      return this.placeDetails.reviews
+    },
+    reviews(){
+      if(this.reviewArray){
+        let newReviewArray = this.reviewArray.slice(0, 2)
+        return newReviewArray
+      }
     },
     numberOfReviews() {
-      let reviewArray = this.$store.state.placeDetail.data.reviews
-      if (reviewArray.length > 1 || reviewArray.length == 0) {
-        return reviewArray.length + ' reviews'
-      } else {
-        return reviewArray.length + ' review'
+      if(this.reviewArray){
+        if (this.reviewArray.length > 1 || this.reviewArray.length == 0) {
+          return this.reviewArray.length + ' reviews'
+        } else {
+          return this.reviewArray.length + ' review'
+        }
       }
+      
     },
     seeAllReviews() {
-      let reviewArray = this.$store.state.placeDetail.data.reviews
-      if (reviewArray.length > 3) {
-        return true
-      }
-      return false
-    },
-    placeDetails() {
-      return this.$store.state.placeDetail.data
+      if(this.reviewArray){
+        if (this.reviewArray.length > 3) {
+          return true
+        }
+        return false
+      } 
     },
     toggleSeeReview() {
       if (this.seeReviews) {
@@ -173,20 +194,12 @@ export default {
       }
       return 'See All'
     },
-    allReviews() {
-      return this.$store.state.placeDetail.data.reviews
-    },
     allPlaceImgs() {
-      return this.placeDetails.photos
+      return this.placeDetailData.photos
     },
     similarPlaces() {
-      return this.$store.state.similarPlaces
+      return this.similarPlacesData
     },
-  },
-  async fetch({ store, params }) {
-    await store.dispatch('getReviews')
-    await store.dispatch('getPlaceDetails', params.place)
-    await store.dispatch('getSimilarPlaces')
   },
 }
 </script>
