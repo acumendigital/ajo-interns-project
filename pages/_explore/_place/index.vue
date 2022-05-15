@@ -2,7 +2,7 @@
   <div class="booking-container">
     <TheNavbar />
     <div class="img-container">
-      <carousel :photos="allPlaceImgs" />
+      <carousel :photos="placeDetailData.photos" />
     </div>
     <div class="place-description-container">
       <div class="place-description">

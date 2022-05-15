@@ -24,7 +24,7 @@
           :place="place"
         />
       </div>
-      <TheErrorCard v-else :message="'Oops... Something is wrong'" />
+      <TheErrorCard v-else-if="!discoveredPlaces" :message="'Oops... Something is wrong'" />
     </section>
   </div>
 </template>
