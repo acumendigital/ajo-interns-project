@@ -6,23 +6,31 @@
         <div class="content">
           <div class="sweater" />
           <div v-if="clicked % 2 == 0" class="text">
-            <h2 class="name">Bernice Semiu</h2>
+            <h2 class="name">
+              Bernice Semiu
+            </h2>
             <p class="details">
               Ajo is very helpful and super easy to use, I had no issues finding
               local attractions and hot spots.
             </p>
           </div>
           <div v-if="clicked % 2 == 1" class="text">
-            <h2 class="name">Chidera Amlabu</h2>
-            <p class="details">Ajo is goated!!</p>
+            <h2 class="name">
+              Chidera Amlabu
+            </h2>
+            <p class="details">
+              Ajo is goated!!
+            </p>
           </div>
         </div>
         <div class="forward-btn" @click="NextSlide(1)" />
       </div>
     </div>
     <div class="review">
-      <p class="see">See more reviews</p>
-      <img src="~assets/images/forward-right.svg" alt="" />
+      <p class="see">
+        See more reviews
+      </p>
+      <img src="~assets/images/forward-right.svg" alt="">
     </div>
   </div>
 </template>
@@ -30,19 +38,19 @@
 <script>
 export default {
   name: 'ReviewPage',
-  data() {
+  data () {
     return {
-      clicked: 1,
+      clicked: 1
     }
   },
   methods: {
-    PreviousSlide(n) {
+    PreviousSlide (n) {
       this.clicked = this.clicked + n
     },
-    NextSlide(n) {
+    NextSlide (n) {
       this.clicked = this.clicked + n
-    },
-  },
+    }
+  }
 }
 </script>
 

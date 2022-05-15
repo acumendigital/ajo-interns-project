@@ -1,19 +1,21 @@
 <template>
   <main>
-    <div class="container">
+    <div class="main-container">
       <NavBar />
-      <div class="background-images">
-        <div class="phones"></div>
-        <div class="store"></div>
+      <div class="container">
+        <div class="background-images">
+          <div class="phones" />
+          <div class="store" />
+        </div>
+        <Details />
+        <Cards />
+        <Review />
       </div>
-      <Details />
-      <Cards />
-      <Review />
       <Footer />
     </div>
     <div class="mobile">
       <div class="logo">
-        <img src="~/assets/images/ajo-logo.png" alt="" />
+        <img src="~/assets/images/ajo-logo.png" alt="">
       </div>
       <div class="title">
         <!-- <img src="../assets/img/ajo-text.png" alt="" /> -->
@@ -22,7 +24,7 @@
       <div class="text">
         <h1>
           {{
-            this.$store.state.userDetails.firstname !== undefined
+            $store.state.userDetails.firstname !== undefined
               ? `Welcome back, ` + userName
               : `Welcome to AJO`
           }}
@@ -46,22 +48,21 @@
 </template>
 
 <script>
+import TheWhiteLoader from '../components/TheWhiteLoader.vue'
 import TheButton from '~/components/TheButton.vue'
 import Footer from '~/components/Footer.vue'
-import TheLoader from '~/components/TheLoader.vue'
-import TheWhiteLoader from '../components/TheWhiteLoader.vue'
 export default {
   name: 'IndexPage',
+  components: { TheButton, Footer, TheWhiteLoader },
   transition: 'start',
-  components: { TheButton, Footer, TheLoader, TheWhiteLoader },
-  data() {
+  data () {
     return {
       userName: this.$store.state.userDetails.firstname,
-      loading: false,
+      loading: false
     }
   },
   methods: {
-    isLoggedIn() {
+    isLoggedIn () {
       if (this.$store.state.userDetails.firstname !== undefined) {
         this.loading = true
         this.$router.push('/home')
@@ -69,8 +70,8 @@ export default {
         this.loading = true
         this.$router.push('/auth/login')
       }
-    },
-  },
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -78,35 +79,34 @@ export default {
   .mobile {
     display: none;
   }
-  .container {
-    max-width: 1440px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .phones {
-    background-image: url(~assets/images/phone.png);
-    position: absolute;
-    width: 580.49px;
-    height: 701.75px;
-    top: 443px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    left: 30px;
-  }
-  .store {
-    background-image: url(~assets/images/stores.png);
-    position: absolute;
-    width: 535px;
-    height: 84px;
-    top: 1241px;
-    left: 0;
-    right: 0;
-    margin: auto;
-    left: 64px;
-  }
+  .main-container{
+  position: relative;
 }
-
+.container{
+  max-width: 1440px;
+  margin: 0 auto;
+}
+.phones{
+  background-image: url(~assets/images/phone.png);
+  position: absolute;
+  width: 580.49px;
+  height: 701.75px;
+  top: 443px;
+  left: 0;
+  right:0;
+  margin: auto;
+}
+.store{
+  background-image: url(~assets/images/stores.png);
+  position: absolute;
+  width: 535px;
+  height: 84px;
+  top: 1241px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+}
 @media screen and (max-width: 428px) {
   .container {
     display: none;
