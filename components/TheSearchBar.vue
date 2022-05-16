@@ -6,7 +6,6 @@
         type="search"
         placeholder="search for your favorite locations"
         v-bind="searchQuery"
-        @mouseover="isVisible = !isVisible"
       />
       <img src="~/assets/images/Search-icon.svg" alt="Search" />
     </div>

@@ -7,7 +7,7 @@
       </div>
       <div class="nav-links">
         <NuxtLink to="/"> Home </NuxtLink>
-        <a>Product</a>
+        <a href="/mobile">Mobile</a>
         <a>Contact</a>
       </div>
       <div class="btns">
@@ -96,6 +96,7 @@ button {
   font-family: 'Cereal Book';
   font-weight: 400;
 }
+/* Navbar Close  */
 .guide {
   display: flex;
   flex-direction: column;
@@ -136,7 +137,9 @@ button {
 a {
   text-decoration: none;
   color: #ffff;
+  border-bottom: 1px solid transparent;
 }
+
 a.nuxt-link-exact-active {
   border-bottom: 1px solid #fcf300;
 }

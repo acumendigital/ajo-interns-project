@@ -29,7 +29,6 @@
   </div>
 </template>
 <script>
-import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
 import TheErrorCard from '~/components/TheErrorCard.vue'
 import axios from 'axios'
 
